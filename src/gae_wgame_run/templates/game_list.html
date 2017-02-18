@@ -1,0 +1,28 @@
+{{/*
+*/}}
+<h3>Games
+
+{{if .IsAdmin}}
+    <a href="/admin/games/add" class="btn btn-success btn-sm">
+      <i class="glyphicon glyphicon-plus"></i>
+      <span>Add Game</span>
+    </a>
+{{end}}
+</h3>
+
+<br />
+
+<div  class="list-group">
+  {{range .Data}}
+  <div class="list-group-item">
+    <a href="/games/{{.ID}}">
+      <h4 class="list-group-item-heading">
+        <i class="glyphicon glyphicon-book"></i>
+        <span>{{.ID}}</span></h4>
+      <div>{{.Title}}  <small>{{.Description}}</small></div>
+    </a>
+  </div>
+  {{else}}
+  <p>No games found.</p>
+  {{end}}
+</div>

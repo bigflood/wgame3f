@@ -1,0 +1,29 @@
+{{/*
+*/}}
+<h3>IAP Settings
+{{if .IsAdmin}}
+    <a href="/admin/iap_setting/-/add" class="btn btn-success btn-sm">
+      <i class="glyphicon glyphicon-plus"></i>
+      <span>Add IAP Setting</span>
+    </a>
+{{end}}
+</h3>
+
+<br />
+
+<div  class="list-group">
+{{range .Data}}
+<div class="list-group-item">
+  <h4 class="list-group-item-heading">
+    <a href="/admin/iap_setting/{{.ID}}">
+    <i class="glyphicon glyphicon-cloud"></i>
+    <span>{{.ID}}</span>
+    </a>
+    <small class="utcdate"> {{.UpdateTime}} </small>
+  </h4>
+  <div>{{.Title}}  <small>{{.Description}}</small></div>
+</div>
+{{else}}
+<p>No iap settings found.</p>
+{{end}}
+</div>

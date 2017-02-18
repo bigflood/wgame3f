@@ -1,0 +1,23 @@
+{{/*
+
+*/}}
+<h3>IAP Validation Result</h3>
+
+<pre>
+  Error: {{.Data.Error}}
+  ID: {{.Data.ID}}
+  Platform: {{.Data.Platform}}
+  URL1: {{.Data.URL1}}
+  Data: {{.Data.Data}}
+</pre>
+
+{{if .IsAdmin}}
+<div>
+  <a href="javascript:history.back()" class="btn btn-warning btn-sm">
+    <span>Back</span>
+  </a>
+  <a href="/admin/iap_setting/{{.Data.ID}}" class="btn btn-primary btn-sm">
+    <span>Info</span>
+  </a>
+</div>
+{{end}}

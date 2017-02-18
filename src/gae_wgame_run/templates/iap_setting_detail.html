@@ -1,0 +1,97 @@
+{{/*
+*/}}
+<h3>IAP Setting</h3>
+
+{{if .Data}}
+
+{{if .IsAdmin}}
+<div class="btn-group">
+  <form action="/admin/iap_setting/{{.Data.ID}}:delete" method="post">
+
+    {{if .IsAdmin}}
+    <a href="/admin/iap_setting/{{.Data.ID}}/refresh" class="btn btn-info btn-sm">
+      <i class="glyphicon glyphicon-refresh"></i>
+      <span>Refresh</span>
+    </a>
+    {{end}}
+
+    <a href="/admin/iap_setting/{{.Data.ID}}/edit" class="btn btn-primary btn-sm">
+      <i class="glyphicon glyphicon-edit"></i>
+      <span>Edit IAP Setting</span>
+    </a>
+    <button class="btn btn-danger btn-sm">
+      <i class="glyphicon glyphicon-trash"></i>
+      <span>Delete IAP Setting</span>
+    </button>
+  </form>
+</div>
+{{end}}
+
+<div class="media">
+  <div class="media-left">
+  </div>
+  <div class="list-group">
+
+    <div class="list-group-item">
+      <i class="glyphicon glyphicon-info-sign"></i>
+
+      <div>ID: <code>{{.Data.ID}}</code></div>
+      <div>Title: <code>{{.Data.Title}}</code></div>
+      <div>Description: <code>{{.Data.Description}}</code></div>
+      <div>Date: <code class="utcdate">{{.Data.UpdateTime}}</code></div>
+    </div>
+
+    {{if .IsAdmin}}
+
+    <div class="list-group-item">
+      <h4 class="list-group-item-heading">Apple</h4>
+      <div>Password: <code>{{.Data.ApplePassword}}</code></div>
+      <div align="right">
+        <a href="/iap_validation/{{.Data.ID}}/apple" class="btn btn-warning btn-sm">
+          <i class="glyphicon glyphicon-edit"></i>
+          <span>Apple Validation</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="list-group-item">
+      <h4 class="list-group-item-heading">Amazon</h4>
+      <div>Secret: <code>{{.Data.AmazonSecret}}</code></div>
+      {{if .Data.AmazonSecret}}
+      <div align="right">
+        <a href="/iap_validation/{{.Data.ID}}/amazon" class="btn btn-warning btn-sm">
+          <i class="glyphicon glyphicon-edit"></i>
+          <span>Amazon Validation</span>
+        </a>
+      </div>
+      {{end}}
+    </div>
+
+    <div class="list-group-item">
+      <h4 class="list-group-item-heading">Google</h4>
+      <div>Public Key: <code>{{.Data.GooglePublicKey}}</code></div>
+      <div>Acc Token: <code>{{.Data.GoogleAccToken}}</code></div>
+      <div>Refresh Token: <code>{{.Data.GoogleRefToken}}</code></div>
+      <div>Client ID: <code>{{.Data.GoogleClientID}}</code></div>
+      <div>Client Secret: <code>{{.Data.GoogleClientSecret}}</code></div>
+      <div>Refresh Time: <code class="utcdate">{{.Data.GoogleRefreshTime}}</code></div>
+
+      {{if .Data.GoogleRefToken}}
+      <div align="right">
+        <a href="/iap_validation/{{.Data.ID}}/google" class="btn btn-warning btn-sm">
+          <i class="glyphicon glyphicon-edit"></i>
+          <span>Google Validation</span>
+        </a>
+      </div>
+      {{end}}
+    </div>
+    {{end}}
+  </div>
+
+</div>
+{{else}}
+<p>Not found.</p>
+{{end}}
+
+<br />
+<br />

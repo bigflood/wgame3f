@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+{{/*
+*/}}
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>WG</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+function utcToLocal(obj) {
+  var txt = obj.text();
+  if (txt) {
+    obj.text( new Date(txt).toLocaleString() );
+  }
+}
+
+function getParameterByName(name, url) {
+  if (!url) url = window.location.href;
+  name = name.replace(/[\[\]]/g, "\\$&");
+  var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+      results = regex.exec(url);
+  if (!results) return null;
+  if (!results[2]) return '';
+  return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+  $(document).ready(function() {
+    var msg = getParameterByName("msg");
+    if (msg) {
+      $(message_from_url).show();
+      $(message_from_url).text(msg);
+    } else {
+      $(message_from_url).hide();
+    }
+
+    $('.utcdate').each(function(i, d) {
+       utcToLocal($(this));
+     });
+  });
+</script>
+</head>
+<body>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button aria-controls="bs-navbar" aria-expanded="false" class="collapsed navbar-toggle" data-target="#bs-navbar" data-toggle="collapse" type="button">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a href="/" class="navbar-brand">WG</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="bs-navbar">
+      <ul class="nav navbar-nav">
+        <li><a href="/games">Games</a></li>
+        <li><a href="/levels">Levels</a></li>
+        {{if .IsAdmin}}
+        <li><a href="/admin/iap_setting">IAP Settings</a></li>
+        {{end}}
+        <li><a href="/status">Status</a></li>
+      </ul>
+
+      <!-- [START auth] -->
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          {{if .IsAdmin}}
+            <a href="{{.AdminLogoutURL}}">Admin Logout</a>
+          {{else}}
+            <a href="{{.AdminLoginURL}}">Admin Login</a>
+          {{end}}
+        </li>
+
+        {{if .AuthEnabled}}
+          <li>
+            {{if .Profile}}
+            <form method="post" action="{{.LogoutURL}}" class="navbar-form navbar-right">
+              <button class="btn btn-default">Log out</button>
+            </form>
+              {{if .Profile.Image.Url}}
+                <img class="img-circle" width="24" src="{{.Profile.Image.Url}}">
+              {{end}}
+              <span>{{.Profile.DisplayName}}</span>
+            {{else}}
+              <a href="{{.LoginURL}}">Log in</a>
+            {{end}}
+          </li>
+        {{end}}
+      </ul>
+      <!-- [END auth] -->
+    </div>
+  </div>
+</nav>
+<div class="container">
+  <pre id="message_from_url" class="alert alert-danger" role="alert" style="display:none">
+  </pre>
+
+  {{template "body" .}}
+
+</div>
+
+</body>
+</html>

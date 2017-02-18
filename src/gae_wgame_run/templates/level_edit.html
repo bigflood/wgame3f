@@ -1,0 +1,45 @@
+{{/*
+  Copyright 2015 Google Inc. All rights reserved.
+  Use of this source code is governed by the Apache 2.0
+  license that can be found in the LICENSE file.
+*/}}
+<h3>{{if .Data}}Edit{{else}}Add{{end}} level</h3>
+
+<form method="post" enctype="multipart/form-data" action="/admin/levels">
+
+{{block "form" .Data}}
+  <div class="form-group">
+    <label for="game">Game</label>
+    <input class="form-control" name="game" id="game" value="{{.Game}}">
+  </div>
+
+  <div class="form-group">
+    <label for="stage">Stage</label>
+    <input class="form-control" name="stage" id="stage" value="{{.Stage}}">
+  </div>
+
+  <div class="form-group">
+    <label for="level">Level</label>
+    <input class="form-control" name="level" id="level" value="{{.Level}}">
+  </div>
+
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input class="form-control" name="title" id="title" value="{{.Title}}">
+  </div>
+  <div class="form-group">
+    <label for="description">Description</label>
+    <input class="form-control" name="description" id="description" value="{{.Description}}">
+  </div>
+
+  <div class="form-group">
+    <label for="data">Data</label>
+    <input class="form-control" name="data" id="data" value="{{.Data}}">
+  </div>
+
+  <button class="btn btn-success">Save</button>
+  <!--
+  <input type="hidden" name="imageURL" value="...">
+-->
+{{end}}
+</form>

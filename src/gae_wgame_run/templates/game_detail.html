@@ -1,0 +1,42 @@
+{{/*
+*/}}
+<h3>Game</h3>
+
+{{if .Data}}
+
+{{if .IsAdmin}}
+<div class="btn-group">
+  <form action="/admin/games/{{.Data.ID}}:delete" method="post">
+    <a href="/admin/games/{{.Data.ID}}/edit" class="btn btn-primary btn-sm">
+      <i class="glyphicon glyphicon-edit"></i>
+      <span>Edit Game</span>
+    </a>
+    <button class="btn btn-danger btn-sm">
+      <i class="glyphicon glyphicon-trash"></i>
+      <span>Delete Game</span>
+    </button>
+  </form>
+</div>
+{{end}}
+
+<div class="media">
+  <div class="media-left">
+  </div>
+  <div class="media-body">
+    <h4>{{.Data.ID}}</h4>
+    <p>Title: {{.Data.Title}}</p>
+    <p>Description: {{.Data.Description}}</p>
+    {{if .IsAdmin}}
+    <p>Edit Key: {{.Data.EditKey}}</p>
+    {{end}}
+  </div>
+
+  <a href="/levels/game/{{.Data.ID}}" class="btn btn-primary btn-sm">
+    <i class="glyphicon glyphicon-edit"></i>
+    <span>Level List</span>
+  </a>
+
+</div>
+{{else}}
+<p>Not found.</p>
+{{end}}

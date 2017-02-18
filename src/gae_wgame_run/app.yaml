@@ -1,0 +1,15 @@
+application: your-app-id
+version: 7
+runtime: go
+api_version: go1
+env_variables:
+  OAUTH2_CALLBACK: https://your-app-id.appspot.com/oauth2callback
+
+handlers:
+
+- url: /admin/.*
+  script: _go_app
+  login: admin
+
+- url: /.*
+  script: _go_app

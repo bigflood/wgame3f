@@ -1,0 +1,21 @@
+{{/*
+*/}}
+<h3>IAP Validation</h3>
+
+<form method="post" enctype="multipart/form-data" action="#">
+
+{{block "form" .Data}}
+  <br />
+  <label>Receipt</label>
+  <div class="input-group">
+    <span class="input-group-addon">*</span>
+    <input class="form-control" name="data" id="data" value="" placeholder="Receipt">
+  </div>
+
+  <br/>
+  <button class="btn btn-success">Validate</button>
+  <!--
+  <input type="hidden" name="imageURL" value="...">
+-->
+{{end}}
+</form>

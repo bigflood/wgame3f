@@ -1,0 +1,78 @@
+{{/*
+*/}}
+<h3>{{if .Data}}Edit{{else}}Add{{end}} IAP Setting</h3>
+
+<form method="post" enctype="multipart/form-data" action="/admin/iap_setting">
+
+{{block "form" .Data}}
+  <div class="utcdate">{{.UpdateTime}}</div>
+  <br/>
+  <div class="input-group">
+    <span class="input-group-addon">ID</span>
+    <input class="form-control" name="id" id="id" value="{{.ID}}" placeholder="ID">
+  </div>
+
+  <br/>
+  <div class="input-group">
+    <span class="input-group-addon">Title</span>
+    <input class="form-control" name="title" id="title" value="{{.Title}}" placeholder="Title">
+  </div>
+
+  <br/>
+  <div class="input-group">
+    <span class="input-group-addon">Description</span>
+    <input class="form-control" name="description" id="description" value="{{.Description}}" placeholder="Description">
+  </div>
+
+  <br />
+  <label>Apple</label>
+  <div class="input-group">
+    <span class="input-group-addon">Password</span>
+    <input class="form-control" name="ApplePassword" id="ApplePassword" value="{{.ApplePassword}}" placeholder="Apple Password">
+  </div>
+
+  <br />
+  <label>Secret</label>
+  <div class="input-group">
+    <span class="input-group-addon">Secret</span>
+    <input class="form-control" name="AmazonSecret" id="AmazonSecret" value="{{.AmazonSecret}}" placeholder="Amazon Secret">
+  </div>
+
+  <br />
+  <label>Google</label>
+  <div class="input-group">
+    <span class="input-group-addon">Public Key</span>
+    <input class="form-control" name="GooglePublicKey" id="GooglePublicKey" value="{{.GooglePublicKey}}" placeholder="Google Public Key">
+  </div>
+
+  <br />
+  <div class="input-group">
+    <span class="input-group-addon">Access Token</span>
+    <input class="form-control" name="GoogleAccToken" id="GoogleAccToken" value="{{.GoogleAccToken}}" placeholder="Google Access Token">
+  </div>
+
+  <br />
+  <div class="input-group">
+    <span class="input-group-addon">Refresh Token</span>
+    <input class="form-control" name="GoogleRefToken" id="GoogleRefToken" value="{{.GoogleRefToken}}" placeholder="Google Refresh Token">
+  </div>
+
+  <br />
+  <div class="input-group">
+    <span class="input-group-addon">Client ID</span>
+    <input class="form-control" name="GoogleClientID" id="GoogleClientID" value="{{.GoogleClientID}}" placeholder="Google Client ID">
+  </div>
+
+  <br />
+  <div class="input-group">
+    <span class="input-group-addon">Client Secret</span>
+    <input class="form-control" name="GoogleClientSecret" id="GoogleClientSecret" value="{{.GoogleClientSecret}}" placeholder="Google Client Secret">
+  </div>
+
+  <br/>
+  <button class="btn btn-success">Save</button>
+  <!--
+  <input type="hidden" name="imageURL" value="...">
+-->
+{{end}}
+</form>

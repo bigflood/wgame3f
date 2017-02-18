@@ -1,0 +1,28 @@
+{{/*
+  Copyright 2015 Google Inc. All rights reserved.
+  Use of this source code is governed by the Apache 2.0
+  license that can be found in the LICENSE file.
+*/}}
+<h3>Levels
+{{if .IsAdmin}}
+    <a href="/admin/levels/add" class="btn btn-success btn-sm">
+      <i class="glyphicon glyphicon-plus"></i>
+      <span>Add level</span>
+    </a>
+{{end}}
+</h3>
+
+<br />
+
+<div  class="list-group">
+  {{range .Data}}
+    <div class="list-group-item">
+      <h4 class="list-group-item-heading">
+        <i class="glyphicon glyphicon-th"></i>
+        <a href="/levels/{{.ID}}">{{.ID}}</a> <small class="utcdate"> {{.UpdateTime}} </small></h4>
+      <div>{{.Title}} <small> {{.Description}} </small></div>
+    </div>
+  {{else}}
+  <p>No levels found.</p>
+  {{end}}
+</div>

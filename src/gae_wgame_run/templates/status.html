@@ -1,0 +1,31 @@
+{{/*
+
+*/}}
+<h3>Status</h3>
+
+<pre>
+version: {{.Data.Version}}
+user: {{.AdminUser}}
+#cron: {{.Data.CronCount}}
+#status: {{.Data.StatusCount}}
+{{/*
+env:
+  {{.Data.Env}}
+*/}}
+</pre>
+
+<script type="text/javascript">
+     var time = new Date().getTime();
+     $(document.body).bind("mousemove keypress", function(e) {
+         time = new Date().getTime();
+     });
+
+     function refresh() {
+         if(new Date().getTime() - time >= 5000)
+             window.location.reload(true);
+         else
+             setTimeout(refresh, 1000);
+     }
+
+     setTimeout(refresh, 1000);
+</script>
